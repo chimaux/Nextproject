@@ -1,0 +1,48 @@
+// @import "../../../variables.scss";
+
+
+// BREAK POINTS
+@mixin respond($breakpoint) {
+  @if ($breakpoint == "sm") {
+    @media (max-width: 640px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == "md") {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == "lg") {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == "xl") {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == "2xl") {
+    @media (max-width: 1536px) {
+      @content;
+    }
+  }
+}
+
+
+.menuContainer{
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+@include respond("md") {
+   display: none;
+
+  }
+  .menuCover{
+    width: 70vw;
+  }
+}
+
