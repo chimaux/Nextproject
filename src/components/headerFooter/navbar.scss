@@ -31,18 +31,38 @@
 }
 
 
-.menuContainer{
-  // background-color: red;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-@include respond("md") {
-   display: none;
-
-  }
-  .menuCover{
-    width: 70vw;
+.navFlex{
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+    .desktopLogo{
+      @include respond("md") {
+        display: none;
+     
+       }
+    }
+   
+  .headerMenu{
+  width: 500px;
+    @include respond("md") {
+      display: none;
+   
+     }
   }
 }
+.menuIconContainer{
+
+  display: none;
+    @include respond("md") {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   
+     }
+}
+// .menuIcon{
+
+// }
+
 

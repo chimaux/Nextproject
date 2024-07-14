@@ -1,92 +1,91 @@
-"use client"
-import React, { useState } from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+"use client";
+import React, { useState } from "react";
+import { RiMenuAddFill } from "react-icons/ri";
+import { Drawer, Menu } from "antd";
 
-import "@/components/headerFooter/navbar.scss"
-import Image from 'next/image';
-const items = [
-  {
-    label: 'Navigation One',
-    key: 'mail',
-    icon: <MailOutlined />,
-  },
-  {
-    label: 'Navigation Two',
-    key: 'app',
-    icon: <AppstoreOutlined />,
-    // disabled: true,
-  },
-  {
-    label: 'Navigation Three - Submenu',
-    key: 'SubMenu',
-    icon: <SettingOutlined />,
-    // children: [
-    //   {
-    //     type: 'group',
-    //     label: 'Item 1',
-    //     children: [
-    //       {
-    //         label: 'Option 1',
-    //         key: 'setting:1',
-    //       },
-    //       {
-    //         label: 'Option 2',
-    //         key: 'setting:2',
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     type: 'group',
-    //     label: 'Item 2',
-    //     children: [
-    //       {
-    //         label: 'Option 3',
-    //         key: 'setting:3',
-    //       },
-    //       {
-    //         label: 'Option 4',
-    //         key: 'setting:4',
-    //       },
-    //     ],
-    //   },
-    // ],
-  },
-  {
-    key: 'alipay',
-    label: 
-  
-    //    ( <a href="£" target="_blank" rel="noopener noreferrer">
-        "Navigation Four - Link"
-      /* </a>  ),*/
-   
-  },
-];
+import "@/components/headerFooter/navbar.scss";
+import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
-
-    const [current, setCurrent] = useState('mail');
-    const onClick = (e) => {
-      console.log('click ', e);
-      setCurrent(e.key);
-    };
+  const [openMenu, setOpenMenu] = useState(false);
   return (
-   <>
-   
-   <div className='menuContainer'>
-    <Image 
-    src={"/next.svg"}
-    width={70}
-    height={70}
-    alt="Picture of the author"
-    />
-   <div className='menuCover'>
-   <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
-   </div>
-   </div>
-   
-   </>
-  )
-}
+    <div>
+      <div className="menuIconContainer">
+        <div
+          className="menuIcon"
+          style={{
+            marginBottom: "20px",
+            marginTop: "20px",
+          }}
+          onClick={() => setOpenMenu(true)}
+        >
+          <RiMenuAddFill size={30} />
+        </div>
+        <div className="mobileLogo">
+          <Image src="/next.svg" alt="Logo" width={70} height={30} />
+        </div>
+      </div>
+      <div className="navFlex">
+        <div className="desktopLogo">
+          <Image src="/next.svg" alt="Logo" width={100} height={30} />
+        </div>
 
-export default Navbar
+        <div className="headerMenu">
+          <AppMenu />
+        </div>
+      </div>
+      <div>
+        <Drawer
+          placement="left"
+          open={openMenu}
+          style={{
+            backgroundColor: "rgb(235, 235, 235)",
+            padding: 0,
+          }}
+          // closable={false}
+
+          onClose={() => setOpenMenu(false)}
+        >
+          <AppMenu isInline />
+        </Drawer>
+      </div>
+    </div>
+  );
+};
+
+const AppMenu = ({ isInline = false }) => {
+  return (
+    <Menu
+      style={{
+        fontSize: "18px",
+        border: "none",
+        backgroundColor: "rgb(235, 235, 235)",
+      }}
+      mode={isInline ? "inline" : "horizontal"}
+      items={[
+        {
+          label: <Link href="/">Home</Link>,
+          key: "home",
+        },
+        {
+          label: <Link href="/blog">Blog</Link>,
+          key: "blog",
+        },
+        {
+          label: <Link href="/admin">Admin</Link>,
+          key: "admin",
+        },
+        {
+          label: <Link href="/contact">Contact</Link>,
+          key: "contact",
+        },
+        {
+          label: <Link href="/about">About</Link>,
+          key: "about",
+        },
+      ]}
+    ></Menu>
+  );
+};
+export default Navbar;

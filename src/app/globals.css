@@ -1,0 +1,10 @@
+:root{
+    --bg: rgb(235, 235, 235);
+    --bgSoft: rgb(255, 255, 255);
+    --text: rgb(255, 255, 255);
+    --btn: #3673fd;
+}
+
+body{
+    background-color: var(--bg);
+}
